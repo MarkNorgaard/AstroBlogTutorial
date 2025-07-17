@@ -1,5 +1,20 @@
 ---
+import { getConfiguredImageService } from "astro:assets";
 
+const pageTitle = "About Me";
+
+const identity ={
+    firstName: "Mark",
+    country: "Denmark",
+    occupation: "Unemployed and looking for a job as a product designer",
+    hobbies: ["Video games", "Digital design", "Front end programming", "Playing the piano"],
+};
+
+const skills = ["Figma", "Product design", "UI/UX design", "UX research", "HTML", "CSS", "JavaScript", "Astro (learning)"];
+
+const happy = true;
+const finished = false;
+const goal = 2;
 ---
 
 <html lang="en">
@@ -8,15 +23,33 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
 	</head>
+
 	<body>
         <a href="/">Home</a>
         <a href="/about">About</a>
 		<a href="/blog">Blog</a>
-		<h1>My Astro Site</h1>
-        <h1>About Me</h1>
+        <h1>{pageTitle}</h1>
         <h1>I'm Mark Nørgaard and this is my new Astro practice site</h1>
         <p>I'm currently building this site following the Astro blog site tutorial...</p>
+
+        <p>Here are a few facts about me:</p>
+        <ul>
+            <li>My name is {identity.firstName}.</li>
+            <li>I live in {identity.country} and I'm currently {identity.occupation}.</li>
+            <li>My hobbies include: {identity.hobbies[0]} and {identity.hobbies[3]}.</li>
+        </ul>
+        <p>My skills are:</p>
+        <ul>
+            {skills.map((skill) => <li>{skill}</li>)}
+        </ul>
+
+        {happy && <p>I am happy to be learning Astro!</p>}
+
+        {finished && <p>I finished this tutorial!</p>}
+
+        {goal === 2 ? <p>My goal is to finish in 2 days.</p> : <p>My goal is not 2 days.</p>}
 	</body>
+
 </html>
